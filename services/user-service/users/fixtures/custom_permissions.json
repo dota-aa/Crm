@@ -1,0 +1,48 @@
+[
+
+  {
+    "model": "users.CustomPermission",
+    "pk": 1,
+    "fields": {
+      "name": "users:create",
+      "description": "Grants authorization to create all kind of users"
+    }
+  },
+
+  {
+    "model": "users.CustomPermission",
+    "pk": 2,
+    "fields": {
+      "name": "users:read",
+      "description": "Grants authorization to retrieve, query, and view user entity data"
+    }
+  },
+
+  {
+    "model": "users.CustomPermission",
+    "pk": 3,
+    "fields": {
+      "name": "users:update",
+      "description": "Grants authorization to update any data for every user"
+    }
+  },
+
+  {
+    "model": "users.CustomPermission",
+    "pk": 4,
+    "fields": {
+      "name": "users:delete:all",
+      "description": "Grants authorization to delete any user including admin and super user"
+    }
+  },
+
+  {
+    "model": "users.CustomPermission",
+    "pk": 5,
+    "fields": {
+      "name": "users:delete",
+      "description": "Grants authorization to delete any user except admin and super user"
+    }
+  }
+
+]

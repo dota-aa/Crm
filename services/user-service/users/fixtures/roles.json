@@ -1,0 +1,72 @@
+[
+
+  {
+    "model": "users.role",
+    "pk": 1,
+    "fields": {
+      "name": "super admin",
+      "description": "Full control over the CRM, including security settings, user provisioning, role assignments, global configurations, and integrations.",
+      "permissions": [1, 2, 3, 4, 5]
+    }
+  },
+
+  {
+    "model": "users.role",
+    "pk": 2,
+    "fields": {
+      "name": "admin",
+      "description": "Full control over the CRM, like super admin but unable to delete super admin and admins",
+      "permissions": [1, 2, 3, 5]
+    }
+  },
+
+  {
+    "model": "users.role",
+    "pk": 3,
+    "fields": {
+      "name": "sales_manager",
+      "description": "Oversees sales pipelines, deals, and team performance across business units. Can view and edit team-owned records, manage sales quotas, and access forecasting tools.",
+      "permissions": []
+    }
+  },
+
+  {
+    "model": "users.role",
+    "pk": 4,
+    "fields": {
+      "name": "sales_rep",
+      "description": "Manages day-to-day sales operations. Full CRUD permissions strictly limited to leads, contacts, and opportunities they own. Cannot edit system-managed fields (e.g., lead score, lifecycle stage).",
+      "permissions": []
+    }
+  },
+
+  {
+    "model": "users.role",
+    "pk": 5,
+    "fields": {
+      "name": "marketing_manager",
+      "description": "Manages marketing campaigns, email sequences, segments, forms, and ad integrations. Excludes record deletions to prevent accidental removal of active sales pipelines.",
+      "permissions": []
+    }
+  },
+
+  {
+    "model": "users.role",
+    "pk": 6,
+    "fields": {
+      "name": "support_agent",
+      "description": "Handles customer tickets, cases, and communication logs. Read access to customer profile details and write access exclusively to ticket/case entities.",
+      "permissions": []
+    }
+  },
+
+  {
+    "model": "users.role",
+    "pk": 7,
+    "fields": {
+      "name": "auditor",
+      "description": "Read-only access across CRM records and report generation/export tools. Prohibited from creating, editing, or deleting live operational records.",
+      "permissions": [2]
+    }
+  }
+]
