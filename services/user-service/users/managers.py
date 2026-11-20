@@ -28,6 +28,9 @@ class CustomUserManager(BaseUserManager):
             email=email
         )
         user.set_password(password)
+
+        # Todo: delete is_active after handling email confirmation
+        user.is_active = True
         user.save(using=self._db)
         return user
 
