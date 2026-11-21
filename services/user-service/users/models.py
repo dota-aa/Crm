@@ -33,6 +33,14 @@ class Role(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    def get_permissions(self) -> list:
+        """Get all permissions of a role"""
+        permissions = []
+        for permission in self.permissions.all():
+            permissions.append(permission.name)
+
+        return permissions
+
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=128)
@@ -91,3 +99,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         This method only works for a single object.
         """
         super().delete()
+
+    def has_permission(self, permission) -> bool:
+        permissions = set()
+        for role in self.roles.prefetch_related('permissions').all():
+            permissions.update(role.get_permissions())
+
+        return permission in permissions

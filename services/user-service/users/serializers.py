@@ -1,3 +1,5 @@
+import keyword
+
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
@@ -15,11 +17,39 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
+            'pk',
             'first_name', 'last_name',
             'email', 'date_of_birth',
             'is_active', 'is_admin',
             'updated_at', 'created_at',
         )
+
+
+class UserSafeUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'first_name', 'last_name', 'date_of_birth',
+        )
+
+
+class UserUpdateDeleteSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = '__all__'
+
+    def update(self, instance, validated_data):
+        """
+        Default behavior saves raw password.
+        """
+        password = validated_data.pop('password', None)
+
+        if password:
+            instance.set_password(raw_password=password)
+
+        return super().update(instance, validated_data)
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
