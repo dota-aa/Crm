@@ -1,0 +1,28 @@
+services:
+  user-service:
+    build:
+      context: ./services/user-service
+    container_name: crm-user-service
+    command: >
+      sh -c "python manage.py loaddata custom_permissions.json roles.json &&
+             python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - ./services/user-service/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - user-db
+
+  user-db:
+    image: postgres:16
+    container_name: crm-db-user
+    environment:
+      POSTGRES_DB: ${USER_DB_NAME}
+      POSTGRES_USER: ${USER_DB_USER}
+      POSTGRES_PASSWORD: ${USER_DB_PASSWORD}
+    volumes:
+      - 'user_postgres_data:/var/lib/postgresql/data'
+
+
+volumes:
+  user_postgres_data:
