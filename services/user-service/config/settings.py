@@ -86,6 +86,18 @@ DATABASES = {
 }
 
 
+# Cache
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://redis:6379/1", # second Redis: docker service name
+        "TIMEOUT": 120,
+        "KEY_PREFIX": "users",
+    }
+}
+
+
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
 

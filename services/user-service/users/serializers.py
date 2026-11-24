@@ -3,7 +3,7 @@ import keyword
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from .models import CustomUser as User
+from .models import CustomUser as User, CustomPermission, Role
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -108,3 +108,18 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         # add necessary tokens
 
         return token
+
+
+# ========================================================
+# Role and Permissions
+# ========================================================
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomPermission
+        fields = '__all__'
+
+
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = '__all__'

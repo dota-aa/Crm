@@ -1,7 +1,7 @@
 from rest_framework.permissions import BasePermission
 
 
-class CustomPermission(BasePermission):
+class RoleBasePermission(BasePermission):
     message = 'User does not have required permission'
 
     def has_permission(self, request, view):
