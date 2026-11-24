@@ -6,8 +6,9 @@ from . import views
 
 
 router = SimpleRouter()
+router.register('permissions', views.PermissionView)
+router.register('roles', views.RoleView)
 router.register('', views.UserReadOnlyView)
-
 
 app_name = 'users'
 urlpatterns = [

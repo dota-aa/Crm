@@ -140,9 +140,9 @@ class PermissionView(ModelViewSet):
         cache.delete(f'users:permissions:{instance.pk}')
 
     def perform_destroy(self, instance):
-        instance.delete()
         cache.delete('users:permissions:all')
-        cache.delete(f'users:permissions:{instance.pk}')
+        cache.delete(f'users:permissions:{instance.id}')
+        instance.delete()
 
     def retrieve(self, request, *args, **kwargs):
         lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
@@ -204,6 +204,7 @@ class RoleView(ModelViewSet):
         cache.delete(f'users:roles:{instance.pk}')
 
     def perform_destroy(self, instance):
-        instance.delete()
+
         cache.delete('users:roles:all')
-        cache.delete(f'users:roles:{instance.pk}')
+        cache.delete(f'users:roles:{instance.id}')
+        instance.delete()
