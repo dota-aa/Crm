@@ -117,7 +117,7 @@ class UserCreateView(CreateAPIView):
     required_permissions = ['users:create']
 
     queryset = User.filtered_objects.all()
-    serializer_class = UserRegistrationView
+    serializer_class = UserRegistrationSerializer
 
 
 # ========================================================
