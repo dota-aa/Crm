@@ -31,6 +31,17 @@ services:
       - user-db
       - redis
 
+  customer-service:
+    build:
+      context: ./services/customer-service
+    container_name: crm-customer-service
+    command: python manage.py runserver 0.0.0.0:8001
+    env_file:
+      - ./services/customer-service/.env
+    ports:
+      - "8001:8001"
+
+
 volumes:
   user_postgres_data:
   crm_redis_data:
